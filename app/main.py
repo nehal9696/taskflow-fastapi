@@ -3,6 +3,7 @@ from app.api.v1.routes import users
 from app.db.session import engine
 from app.db.base import Base
 from app.models import user, task
+from app.api.v1.routes import auth
 
 Base.metadata.create_all(bind=engine)
 
@@ -13,6 +14,7 @@ app = FastAPI(
 )
 
 app.include_router(users.router)
+app.include_router(auth.router)
 
 @app.get("/health", tags=["Health"])
 def health_check():
